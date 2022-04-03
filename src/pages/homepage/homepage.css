@@ -1,0 +1,48 @@
+.home-wrapper {
+  background-color: var(--primary-color);
+  color: var(--txt-clr-secondary);
+  min-height: 100vh;
+}
+.auto-container {
+  max-width: 60rem;
+  margin: auto;
+}
+.header {
+  width: 32rem;
+  box-shadow: 0 0 2px;
+  margin: auto;
+  text-align: center;
+  font-size: 3.2rem;
+  font-weight: 800;
+  font-family: cursive;
+}
+.timer-modal {
+  background-color: var(--primary-light-color);
+  width: 100%;
+}
+.timer-header {
+  font-size: 16px;
+}
+.timer-header .active {
+  font-weight: var(--font-wt-bold);
+  background-color: var(--secondary-light-color);
+}
+.timer-clock {
+  font-size: 12rem;
+}
+.btn-start {
+  font-size: 22px;
+}
+.current-task {
+  text-align: center;
+}
+.add-task {
+  text-align: center;
+  border: 1px dotted;
+}
+.task {
+  text-align: center;
+  background-color: var(--background-color);
+  width: 100%;
+  color: var(--txt-clr-tertiary);
+}
