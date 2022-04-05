@@ -1,44 +1,82 @@
 import "./homepage.css";
+import { useState } from "react";
+import { v4 as uuid } from "uuid";
+import { TaskModal, PomodoroPane, AddButton, Header } from "../../components";
+import { TaskPane } from "./taskpane/taskpane";
+
+const initialTodo = { estPomodoro: 1, completedPomodoro: 0 };
 
 const Homepage = () => {
+  const [todo, setTodo] = useState(initialTodo);
+  const [todosList, setTodosList] = useState([]);
+  const [currentTodo, setCurrentTodo] = useState({});
+  const [isModalActive, setIsModalActive] = useState(false);
+
+  const addTodo = (todo) => {
+    setTodosList([...todosList, { ...todo, id: uuid() }]);
+    setIsModalActive((prev) => !prev);
+    setTodo(initialTodo);
+  };
+
+  const updateTodo = (todo) => {
+    setTodosList((previous) =>
+      previous.map((item) => (item.id === todo.id ? todo : item))
+    );
+    setIsModalActive((prev) => !prev);
+    setTodo(initialTodo);
+  };
+
+  const editTodo = (todo) => {
+    setTodo(todo);
+    setIsModalActive((prev) => !prev);
+  };
+
+  const deleteTodo = (todo) => {
+    setTodosList((previous) => previous.filter((item) => item.id !== todo.id));
+    setIsModalActive((prev) => !prev);
+    setTodo(initialTodo);
+  };
+
+  const cancelTodo = () => {
+    setIsModalActive((prev) => !prev);
+    setTodo(initialTodo);
+  };
+
+  const modalToggle = () => {
+    setIsModalActive((prev) => !prev);
+  };
+
   return (
     <div className="home-wrapper">
-      <header className="header pd-x-base">LAKSHYA</header>
+      <Header />
       <div className="auto-container">
-        <main class="flex-column align-center gap-2">
-          <div className="timer-modal flex-column align-center pd-y-md pd-x-base">
-            <div className="flex-row gap-2 align-center timer-header">
-              <button className="btn active menu-options">Pomodoro</button>
-              <button className="btn menu-options">Short Break</button>
-              <button className="btn menu-options">Long Break</button>
-            </div>
-            <div className="timer-clock align-center">25:00</div>
-            <div className="align-center">
-              <button className="pd-x-base hide">Restart</button>
-              <button className="pd-x-base btn-start btn btn-secondary">
-                START
-              </button>
-              <button className="pd-x-base hide">Next</button>
-            </div>
-          </div>
-          <div className="flex-column current-task">
-            <h3>#1</h3>
-            <div className="flex-row pd-x-base">
-              <p> Time to focus</p>
-              <button className="align-right">
-                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-              </button>
-            </div>
-          </div>
-          <div className="flex-column gap-2" id="task-pane">
-            <div className="btn pd-y-base task">Task 1</div>
-          </div>
-          <button className="add-task btn pd-y-base">
-            <i className="fa fa-plus pd-x-base"></i>Add Task
-          </button>
+        <main className="flex-column align-center gap-2">
+          <PomodoroPane />
+          <TaskPane
+            todosList={todosList}
+            editTodo={editTodo}
+            isModalActive={isModalActive}
+            setCurrentTodo={setCurrentTodo}
+            currentTodo={currentTodo}
+          />
+          {!isModalActive && <AddButton modalToggle={modalToggle} />}
+
+          {isModalActive && (
+            <TaskModal
+              todo={todo}
+              setTodo={setTodo}
+              todosList={todosList}
+              setTodosList={setTodosList}
+              addTodo={addTodo}
+              updateTodo={updateTodo}
+              deleteTodo={deleteTodo}
+              cancelTodo={cancelTodo}
+            />
+          )}
         </main>
       </div>
     </div>
   );
 };
+
 export { Homepage };

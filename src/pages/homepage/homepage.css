@@ -46,3 +46,15 @@
   width: 100%;
   color: var(--txt-clr-tertiary);
 }
+.task-modal {
+  background-color: var(--background-color);
+  border-radius: var(--size-xs);
+  color: var(--txt-clr-tertiary);
+}
+.input-task {
+  font-size: 2.4rem;
+}
+.input-pomodoro-count {
+  max-width: 10rem;
+  font-size: 2.4rem;
+}
