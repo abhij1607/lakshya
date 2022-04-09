@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
+import { useTimer } from "../context/timer-context";
 
 const PomodoroPane = () => {
-  const [timer, setTimer] = useState(1500);
+  const { timerState, timerDispatch } = useTimer();
+  const {
+    pomodoroTimer,
+    shortBreakTimer,
+    longBreakTimer,
+    menuOptionActive,
+  } = timerState;
+  const [timer, setTimer] = useState(pomodoroTimer);
   const [pause, setPause] = useState(true);
-  const [menuOptionActive, setMenuOptionActive] = useState("Pomodoro");
 
   const tick = () => {
-    setTimer(timer - 1);
+    setTimer((prev) => prev - 1);
   };
 
   useEffect(() => {
@@ -22,36 +29,41 @@ const PomodoroPane = () => {
     };
   });
 
-  const startTimer = () => setPause(!pause);
+  const togglePauseTimer = () => {
+    setPause((prev) => !prev);
+  };
 
   const reset = () => {
     switch (menuOptionActive) {
       case "Pomodoro":
-        return setTimer(1500);
+        return setTimer(pomodoroTimer);
       case "Short Break":
-        return setTimer(300);
+        return setTimer(shortBreakTimer);
       case "Long Break":
-        return setTimer(900);
+        return setTimer(longBreakTimer);
 
       default:
         break;
     }
   };
   const pomodoro = () => {
-    setMenuOptionActive("Pomodoro");
-    setTimer(1500);
+    timerDispatch({ type: "CHANGE_ACTIVE_MENU_OPTION", payload: "Pomodoro" });
+    setTimer(pomodoroTimer);
     setPause(true);
   };
 
   const shortBreak = () => {
-    setMenuOptionActive("Short Break");
-    setTimer(300);
+    timerDispatch({
+      type: "CHANGE_ACTIVE_MENU_OPTION",
+      payload: "Short Break",
+    });
+    setTimer(shortBreakTimer);
     setPause(true);
   };
 
   const longBreak = () => {
-    setMenuOptionActive("Long Break");
-    setTimer(900);
+    timerDispatch({ type: "CHANGE_ACTIVE_MENU_OPTION", payload: "Long Break" });
+    setTimer(longBreakTimer);
     setPause(true);
   };
 
@@ -105,7 +117,7 @@ const PomodoroPane = () => {
         </button>
         <button
           className="pd-x-base btn-start btn btn-primary btn-inverse txt-bold"
-          onClick={startTimer}
+          onClick={togglePauseTimer}
         >
           {pause ? "START" : "PAUSE"}
         </button>
