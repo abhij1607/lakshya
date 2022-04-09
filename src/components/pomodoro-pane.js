@@ -4,16 +4,16 @@ import { useTimer } from "../context/timer-context";
 const PomodoroPane = () => {
   const { timerState, timerDispatch } = useTimer();
   const {
-    pause,
     pomodoroTimer,
     shortBreakTimer,
     longBreakTimer,
     menuOptionActive,
   } = timerState;
   const [timer, setTimer] = useState(pomodoroTimer);
+  const [pause, setPause] = useState(true);
 
   const tick = () => {
-    setTimer(timer - 1);
+    setTimer((prev) => prev - 1);
   };
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const PomodoroPane = () => {
   });
 
   const togglePauseTimer = () => {
-    timerDispatch({ type: "TOGGLE_PAUSE", payload: !pause });
+    setPause((prev) => !prev);
   };
 
   const reset = () => {
@@ -49,7 +49,7 @@ const PomodoroPane = () => {
   const pomodoro = () => {
     timerDispatch({ type: "CHANGE_ACTIVE_MENU_OPTION", payload: "Pomodoro" });
     setTimer(pomodoroTimer);
-    timerDispatch({ type: "TOGGLE_PAUSE", payload: true });
+    setPause(true);
   };
 
   const shortBreak = () => {
@@ -58,13 +58,13 @@ const PomodoroPane = () => {
       payload: "Short Break",
     });
     setTimer(shortBreakTimer);
-    timerDispatch({ type: "TOGGLE_PAUSE", payload: true });
+    setPause(true);
   };
 
   const longBreak = () => {
     timerDispatch({ type: "CHANGE_ACTIVE_MENU_OPTION", payload: "Long Break" });
     setTimer(longBreakTimer);
-    timerDispatch({ type: "TOGGLE_PAUSE", payload: true });
+    setPause(true);
   };
 
   const timerFormat = () => {

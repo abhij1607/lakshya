@@ -6,7 +6,6 @@ const initialState = {
   pomodoroTimer: 1500,
   shortBreakTimer: 300,
   longBreakTimer: 900,
-  pause: true,
   menuOptionActive: "Pomodoro",
 };
 const timerReducer = (state, action) => {
@@ -22,9 +21,6 @@ const timerReducer = (state, action) => {
 
     case "CHANGE_ACTIVE_MENU_OPTION":
       return { ...state, menuOptionActive: action.payload };
-
-    case "TOGGLE_PAUSE":
-      return { ...state, pause: action.payload };
 
     default:
       return state;
