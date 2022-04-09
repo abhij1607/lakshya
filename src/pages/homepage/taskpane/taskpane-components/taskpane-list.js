@@ -7,7 +7,7 @@ const TaskList = ({ todosList, isModalActive, editTodo, setCurrentTodo }) => {
         return (
           <div key={item.id} className="flex-row gap-2">
             <div
-              className="btn pd-y-base pd-x-base task flex-row"
+              className="btn p-xlg pd-y-base pd-x-base task flex-row"
               onClick={() => setCurrentTodo(item)}
             >
               {item.task}
