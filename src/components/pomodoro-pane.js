@@ -10,7 +10,7 @@ const PomodoroPane = () => {
   };
 
   useEffect(() => {
-    var id;
+    let id;
     if (!pause) {
       id = setInterval(() => {
         tick();
