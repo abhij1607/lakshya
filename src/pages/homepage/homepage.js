@@ -1,5 +1,5 @@
 import "./homepage.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import { TaskModal, PomodoroPane, AddButton, Header } from "../../components";
 import { TaskPane } from "./taskpane/taskpane";
@@ -8,9 +8,15 @@ const initialTodo = { estPomodoro: 1, completedPomodoro: 0 };
 
 const Homepage = () => {
   const [todo, setTodo] = useState(initialTodo);
-  const [todosList, setTodosList] = useState([]);
+  const [todosList, setTodosList] = useState(
+    JSON.parse(localStorage.getItem("todosList")) || []
+  );
   const [currentTodo, setCurrentTodo] = useState({});
   const [isModalActive, setIsModalActive] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("todosList", JSON.stringify(todosList));
+  }, [todosList]);
 
   const addTodo = (todo) => {
     setTodosList([...todosList, { ...todo, id: uuid() }]);
