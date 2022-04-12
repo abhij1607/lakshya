@@ -19,4 +19,4 @@ Lakshya is a pomodoro timer that works on internet browser. The aim of this app 
 
 Check out the live app here:
 
-- [Pomodoro Live Link](lakshya-pomodoro.netlify.app/)
+- [Pomodoro Live Link](https://lakshya-pomodoro.netlify.app/)
