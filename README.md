@@ -14,3 +14,9 @@ Lakshya is a pomodoro timer that works on internet browser. The aim of this app 
 Check out the live app here:
 
 - [Pomodoro Live Link](https://glados-ecomm.netlify.app/)
+
+## How to use it
+
+Check out the live app here:
+
+- [Pomodoro Live Link](https://glados-ecomm.netlify.app/)
