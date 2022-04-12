@@ -14,6 +14,7 @@ Lakshya is a pomodoro timer that works on internet browser. The aim of this app 
 - Pomodoro Timer
 - Short Break
 - Long Break
+- ADD, EDIT, DELETE TODO APP
 
 ## How to use it
 
