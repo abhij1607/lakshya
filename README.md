@@ -9,11 +9,11 @@ Lakshya is a pomodoro timer that works on internet browser. The aim of this app 
 
 </div>
 
-## How to use it
+## Features
 
-Check out the live app here:
-
-- [Pomodoro Live Link](https://glados-ecomm.netlify.app/)
+- Pomodoro Timer
+- Short Break
+- Long Break
 
 ## How to use it
 
