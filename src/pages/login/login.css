@@ -1,0 +1,11 @@
+.form-style {
+  background-color: var(--background-color);
+  color: var(--sec-text);
+  padding: var(--size-lg);
+  border-radius: var(--size-md);
+  width: var(--size-320);
+  margin: 5rem auto;
+}
+.form-style .input {
+  font-size: var(--size-md);
+}

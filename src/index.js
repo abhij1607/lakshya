@@ -4,11 +4,14 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { TimerProvider } from "./context/timer-context";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
     <TimerProvider>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </TimerProvider>
   </React.StrictMode>,
   document.getElementById("root")

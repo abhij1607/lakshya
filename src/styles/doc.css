@@ -1,6 +1,20 @@
 .wrapper {
-  display: flex;
   min-height: 100vh;
+  background-color: var(--primary-color);
+  color: var(--txt-clr-secondary);
+}
+.auto-container {
+  max-width: 60rem;
+  margin: auto;
+}
+.header {
+  width: 32rem;
+  box-shadow: 0 0 2px;
+  margin: auto;
+  text-align: center;
+  font-size: 3.2rem;
+  font-weight: 800;
+  font-family: cursive;
 }
 .top-nav .brand-nav {
   background-color: var(--primary-color);

@@ -1,10 +1,14 @@
 import "./styles/index.css";
-import { Homepage } from "./pages";
+import { Homepage, Login } from "./pages";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <Homepage />
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </div>
   );
 }
