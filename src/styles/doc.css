@@ -1,6 +1,22 @@
 .wrapper {
-  display: flex;
   min-height: 100vh;
+  background-color: var(--primary-color);
+  color: var(--txt-clr-secondary);
+}
+.auto-container {
+  max-width: 60rem;
+  margin: auto;
+}
+.header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin: auto;
+  text-align: center;
+  font-size: 3.2rem;
+  font-weight: 800;
+  font-family: cursive;
+}
+.header .link {
+  color: var(--white);
 }
 .top-nav .brand-nav {
   background-color: var(--primary-color);
