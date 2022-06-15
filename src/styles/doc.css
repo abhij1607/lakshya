@@ -8,13 +8,15 @@
   margin: auto;
 }
 .header {
-  width: 32rem;
-  box-shadow: 0 0 2px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   margin: auto;
   text-align: center;
   font-size: 3.2rem;
   font-weight: 800;
   font-family: cursive;
+}
+.header .link {
+  color: var(--white);
 }
 .top-nav .brand-nav {
   background-color: var(--primary-color);

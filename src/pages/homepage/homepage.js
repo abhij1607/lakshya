@@ -4,18 +4,28 @@ import { v4 as uuid } from "uuid";
 import { TaskModal, PomodoroPane, AddButton, Header } from "../../components";
 import { TaskPane } from "./taskpane/taskpane";
 
+import { useAuth } from "../../context/auth-context";
+import { updateUserDetails } from "../../firebase/firestore-requests";
+
 const initialTodo = { estPomodoro: 1, completedPomodoro: 0 };
 
 const Homepage = () => {
+  const { userDispatch, userState } = useAuth();
   const [todo, setTodo] = useState(initialTodo);
-  const [todosList, setTodosList] = useState(
-    JSON.parse(localStorage.getItem("todosList")) || []
-  );
+  const [todosList, setTodosList] = useState(userState.todoList);
   const [currentTodo, setCurrentTodo] = useState({});
   const [isModalActive, setIsModalActive] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem("todosList", JSON.stringify(todosList));
+    setTodosList(userState.todoList);
+  }, [userState.userToken]);
+
+  useEffect(() => {
+    updateUserDetails(
+      userState.userToken,
+      { todoList: todosList },
+      userDispatch
+    );
   }, [todosList]);
 
   const addTodo = (todo) => {
@@ -51,7 +61,6 @@ const Homepage = () => {
   const modalToggle = () => {
     setIsModalActive((prev) => !prev);
   };
-
   return (
     <div className="home-wrapper">
       <Header />
